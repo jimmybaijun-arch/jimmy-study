@@ -1,0 +1,6 @@
+{
+  "name": "黃柏郡的學習歷程網站",
+  "description": "高中生個人學習歷程網站，展示個人簡介、學習歷程、技能與專題作品，並提供管理後台。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

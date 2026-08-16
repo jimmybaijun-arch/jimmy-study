@@ -1,0 +1,105 @@
+{
+  "entities": {
+    "SiteProfile": {
+      "title": "SiteProfile",
+      "description": "Student portfolio basic profile and about me information",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "school": { "type": "string", "maxLength": 100 },
+        "grade": { "type": "string", "maxLength": 50 },
+        "tagline": { "type": "string", "maxLength": 300 },
+        "aboutMe": { "type": "string", "maxLength": 3000 },
+        "learningFocus": { "type": "string", "maxLength": 1000 },
+        "currentLearning": { "type": "string", "maxLength": 1000 },
+        "futureGoals": { "type": "string", "maxLength": 1000 },
+        "avatarUrl": { "type": "string", "maxLength": 2000000 },
+        "adminEmail": { "type": "string", "maxLength": 200 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "school", "grade"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "Portfolio projects and learning records",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 200 },
+        "date": { "type": "string", "maxLength": 50 },
+        "category": { "type": "string", "maxLength": 100 },
+        "summary": { "type": "string", "maxLength": 500 },
+        "content": { "type": "string", "maxLength": 10000 },
+        "challenge": { "type": "string", "maxLength": 5000 },
+        "solution": { "type": "string", "maxLength": 5000 },
+        "reflection": { "type": "string", "maxLength": 5000 },
+        "coverImage": { "type": "string", "maxLength": 2000000 },
+        "videoUrl": { "type": "string", "maxLength": 1000 },
+        "order": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "summary", "order"]
+    },
+    "ProjectImage": {
+      "title": "ProjectImage",
+      "description": "Additional project images stored separately",
+      "type": "object",
+      "properties": {
+        "projectId": { "type": "string", "maxLength": 128 },
+        "imageUrl": { "type": "string", "maxLength": 2000000 },
+        "caption": { "type": "string", "maxLength": 200 },
+        "order": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["projectId", "imageUrl", "order"]
+    },
+    "TimelineItem": {
+      "title": "TimelineItem",
+      "description": "Learning timeline milestone events",
+      "type": "object",
+      "properties": {
+        "year": { "type": "string", "maxLength": 50 },
+        "title": { "type": "string", "maxLength": 200 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "category": { "type": "string", "maxLength": 100 },
+        "order": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["year", "title", "order"]
+    },
+    "SkillItem": {
+      "title": "SkillItem",
+      "description": "Tags for skills and capabilities",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "category": { "type": "string", "maxLength": 100 },
+        "order": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "order"]
+    }
+  },
+  "firestore": {
+    "/siteProfile/{profileId}": {
+      "schema": "SiteProfile",
+      "description": "Basic profile data for the portfolio website"
+    },
+    "/projects/{projectId}": {
+      "schema": "Project",
+      "description": "Project items shown on portfolio"
+    },
+    "/projectImages/{imageId}": {
+      "schema": "ProjectImage",
+      "description": "Individual images belonging to projects"
+    },
+    "/timeline/{timelineId}": {
+      "schema": "TimelineItem",
+      "description": "Timeline milestones"
+    },
+    "/skills/{skillId}": {
+      "schema": "SkillItem",
+      "description": "Skills and tags"
+    }
+  }
+}

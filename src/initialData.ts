@@ -1,0 +1,123 @@
+import { SiteProfile, Project, TimelineItem, SkillItem } from './types';
+
+export const DEFAULT_PROFILE: SiteProfile = {
+  name: '黃柏郡',
+  school: '大灣高中',
+  grade: '一年級',
+  tagline: '熱愛透過科技與創作解決生活中的問題，探索程式、人工智慧與硬體整合的無限可能。',
+  aboutMe: '我是大灣高中一年級的黃柏郡。在高中學習旅程中，我對資訊科學、人工智慧與機器人充滿熱忱。我喜歡動手做專題，將課堂上學到的知識轉化為實際能運行的應用程式與硬體作品。在課餘時間，我也喜歡攝影與影片創作，用鏡頭記錄身邊的美好與學習點滴。',
+  learningFocus: '自主學習前端與後端整合開發、探索 Python 機器學習與電腦視覺應用，並積極參與校內外科技競賽與創客活動。',
+  currentLearning: '深入學習現代網頁開發技術、微控制器（Arduino / ESP32）硬體控制、以及生成式 AI 應用開發與提詞工程。',
+  futureGoals: '期許自己在高中三年內完成具代表性的跨領域專題，參加全國中學生科技競賽，並在大學深入主修資訊工程相關學系。',
+  avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
+  adminEmail: 'jimmybaijun@gmail.com',
+};
+
+export const DEFAULT_PROJECTS: Project[] = [
+  {
+    id: 'sample-project-1',
+    title: '智慧校園垃圾分類助手 (AI Assistant)',
+    date: '2026/03',
+    category: '人工智慧 / AI',
+    summary: '運用電腦視覺技術辨識常見校園垃圾與可回收物，提供即時分類引導與統計報表。',
+    content: '在學校日常生活中，經常看見同學因為不確定垃圾類別而誤丟。本專題旨在利用輕量化影像辨識模型，辨識紙餐盒、寶特瓶、鋁箔包與一般垃圾，並在辨識後透過語音與螢幕顯示正確分類提示。',
+    challenge: '在初期模型測試時，光線角度變化或垃圾外觀變形（如壓扁的寶特瓶）會導致辨識準確率下降。',
+    solution: '收集多種角度與不同光照環境下的樣本照片，進行資料擴增（Data Augmentation），並調整置信度閾值，成功將平均辨識準確率提升至 92% 以上。',
+    reflection: '這次專題讓我體會到「資料品質」對 AI 模型的關鍵影響，也學會如何將技術真正應用在解決校園痛點上。',
+    coverImage: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1200&q=80',
+    videoUrl: 'https://drive.google.com/file/d/1BxyF10y4B0L5LwE4G3X2Z1_SAMPLE/view',
+    order: 1,
+    createdAt: '2026-03-01T00:00:00.000Z',
+  },
+  {
+    id: 'sample-project-2',
+    title: '循線自走車與自主避障機器人',
+    date: '2025/11',
+    category: '機器人與硬體',
+    summary: '結合 Arduino 微控制器、紅外線感測器與超音波模組，實現自主導航與避障機制。',
+    content: '參加高中創客社團期間，獨立設計並組裝雙輪差速自走車。透過紅外線循線感測器即時偵測黑白軌跡，並搭配 PID 演算法控制馬達轉速，讓車輛在高速行進中依然保持穩定轉彎。',
+    challenge: '車輛在高速過彎時容易因慣性衝出軌道，且超音波感測器在特定角度會有反射盲區。',
+    solution: '導入比例微積分（PID）演算法調整轉向靈敏度，並在車頭兩側增設雙向輔助感測器，大幅減少盲區並實現平滑循跡。',
+    reflection: '從硬體銲接、電路除錯到韌體調校，讓我深刻理解「軟硬整合」的魅力與實作細節的重要性。',
+    coverImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80',
+    videoUrl: '',
+    order: 2,
+    createdAt: '2025-11-15T00:00:00.000Z',
+  },
+  {
+    id: 'sample-project-3',
+    title: '自主學習歷程：Web 現代前端開發實作',
+    date: '2025/08',
+    category: '學習反思 / 程式',
+    summary: '記錄從零自學現代網頁開發技術的心路歷程，建立個人專屬的學習筆記與展示平台。',
+    content: '高一暑假期間，我給自己設定了「自主學習 60 天」計畫。每天安排 2 小時研讀現代 Web 標準、TypeScript 語法與元件化架構，並透過實際做出一個個互動小工具來驗證所學。',
+    challenge: '剛開始面對非同步概念（Async/Await）與狀態生命週期管理時感到抽象且不易理解。',
+    solution: '透過畫流程圖拆解資料流向，並將大功能拆解為單一職責的小函式逐一測試，逐步建立扎實的概念模型。',
+    reflection: '自主學習最重要的不是每天學了多少名詞，而是保持好奇心與持續動手除錯的耐性。',
+    coverImage: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80',
+    videoUrl: '',
+    order: 3,
+    createdAt: '2025-08-20T00:00:00.000Z',
+  }
+];
+
+export const DEFAULT_TIMELINE: TimelineItem[] = [
+  {
+    id: 'tl-1',
+    year: '2024 年',
+    title: '第一次接觸程式設計',
+    description: '從 Python 基礎語法與演算法邏輯入門，完成生平第一個終端機互動文字遊戲。',
+    category: '程式起步',
+    order: 1,
+    createdAt: '2024-09-01T00:00:00.000Z',
+  },
+  {
+    id: 'tl-2',
+    year: '2025 年',
+    title: '加入大灣高中創客社與機器人工作坊',
+    description: '學習 Arduino 微控制器、電子電路基礎與循線自走車硬體組裝。',
+    category: '硬體創客',
+    order: 2,
+    createdAt: '2025-04-10T00:00:00.000Z',
+  },
+  {
+    id: 'tl-3',
+    year: '2025 年',
+    title: '完成第一個跨領域軟硬整合專案',
+    description: '結合感測器與自動化控制，於校內科技成果展進行展示與簡報發表。',
+    category: '專題發表',
+    order: 3,
+    createdAt: '2025-11-20T00:00:00.000Z',
+  },
+  {
+    id: 'tl-4',
+    year: '2026 年',
+    title: '啟動 AI 應用研究與建立個人學習歷程網站',
+    description: '運用雲端資料庫與現代網頁技術，打造可持續維護與發布的個人高中作品集。',
+    category: '自主學習',
+    order: 4,
+    createdAt: '2026-02-15T00:00:00.000Z',
+  },
+  {
+    id: 'tl-5',
+    year: '未來展望',
+    title: '挑戰全國高中專題競賽與深入資訊工程領域',
+    description: '持續積累實作經驗，探索生成式 AI 輔助學習工具，朝向資訊工程科系目標邁進。',
+    category: '目標邁進',
+    order: 5,
+    createdAt: '2026-03-01T00:00:00.000Z',
+  }
+];
+
+export const DEFAULT_SKILLS: SkillItem[] = [
+  { id: 'sk-1', name: 'Python 程式設計', category: '程式開發', order: 1 },
+  { id: 'sk-2', name: 'JavaScript / TypeScript', category: '程式開發', order: 2 },
+  { id: 'sk-3', name: 'React 網頁元件化', category: '程式開發', order: 3 },
+  { id: 'sk-4', name: 'Arduino / 創客微控制器', category: '硬體物聯網', order: 4 },
+  { id: 'sk-5', name: '感測器應用與電路實作', category: '硬體物聯網', order: 5 },
+  { id: 'sk-6', name: 'AI 電腦視覺初探', category: '人工智慧', order: 6 },
+  { id: 'sk-7', name: '生成式 AI 提示詞應用', category: '人工智慧', order: 7 },
+  { id: 'sk-8', name: '攝影構圖與影像後製', category: '數位創作', order: 8 },
+  { id: 'sk-9', name: '專題簡報與口語表達', category: '核心素養', order: 9 },
+  { id: 'sk-10', name: '自主學習與問題拆解', category: '核心素養', order: 10 },
+];

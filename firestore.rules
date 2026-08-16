@@ -1,0 +1,83 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() &&
+        request.auth.token.email_verified == true &&
+        request.auth.token.email == 'jimmybaijun@gmail.com';
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Site Profile
+    match /siteProfile/{profileId} {
+      allow get, list: if true;
+      allow create, update: if isAdmin() && isValidId(profileId) &&
+        request.resource.data.name is string &&
+        request.resource.data.name.size() <= 100 &&
+        request.resource.data.school is string &&
+        request.resource.data.school.size() <= 100 &&
+        request.resource.data.grade is string &&
+        request.resource.data.grade.size() <= 50;
+      allow delete: if isAdmin() && isValidId(profileId);
+    }
+
+    // Projects
+    match /projects/{projectId} {
+      allow get, list: if true;
+      allow create, update: if isAdmin() && isValidId(projectId) &&
+        request.resource.data.title is string &&
+        request.resource.data.title.size() <= 200 &&
+        request.resource.data.summary is string &&
+        request.resource.data.summary.size() <= 500 &&
+        request.resource.data.order is number;
+      allow delete: if isAdmin() && isValidId(projectId);
+    }
+
+    // Project Images
+    match /projectImages/{imageId} {
+      allow get, list: if true;
+      allow create, update: if isAdmin() && isValidId(imageId) &&
+        request.resource.data.projectId is string &&
+        request.resource.data.projectId.size() <= 128 &&
+        request.resource.data.imageUrl is string &&
+        request.resource.data.imageUrl.size() <= 2000000 &&
+        request.resource.data.order is number;
+      allow delete: if isAdmin() && isValidId(imageId);
+    }
+
+    // Timeline Items
+    match /timeline/{timelineId} {
+      allow get, list: if true;
+      allow create, update: if isAdmin() && isValidId(timelineId) &&
+        request.resource.data.year is string &&
+        request.resource.data.year.size() <= 50 &&
+        request.resource.data.title is string &&
+        request.resource.data.title.size() <= 200 &&
+        request.resource.data.order is number;
+      allow delete: if isAdmin() && isValidId(timelineId);
+    }
+
+    // Skills
+    match /skills/{skillId} {
+      allow get, list: if true;
+      allow create, update: if isAdmin() && isValidId(skillId) &&
+        request.resource.data.name is string &&
+        request.resource.data.name.size() <= 100 &&
+        request.resource.data.order is number;
+      allow delete: if isAdmin() && isValidId(skillId);
+    }
+  }
+}
